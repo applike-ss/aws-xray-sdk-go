@@ -11,6 +11,10 @@ type responseCapturer struct {
 	length int
 }
 
+func (w *responseCapturer) Flush() {
+	w.ResponseWriter.(http.Flusher).Flush()
+}
+
 func (w *responseCapturer) WriteHeader(status int) {
 	w.status = status
 	w.ResponseWriter.WriteHeader(status)
